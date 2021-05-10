@@ -1,0 +1,52 @@
+<%- include("partials/header") %>
+<%- include('partials/navbar') %>
+<link rel="stylesheet" href="css/projects.css">
+   <!-- course section -->
+	<section class="course-section mb-lg-3">
+		<div class="course-warp"> 
+            <div class="title-header"><h2>All Categories</h2> </div>                                      
+			<div class="row course-items-area">
+			   
+				<% categories.forEach(category => { %>
+				 <!-- course -->
+				<div class="mix col-lg-3 col-md-4 col-sm-6 finance">
+					<div class="course-item">
+						<div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
+							
+						</div>
+						<a href="/projects?category_name=<%= category.title %>">
+						<div class="course-info">
+							<div class="course-text">
+								<h5><%= category.title %> </h5>
+								<p><%= category.description %> </p>
+								<!-- <div class="students">120 Students</div> -->
+							</div>
+							<!-- <div class="course-author">
+								<div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
+								<p> , <span>Developer</span></p>
+							</div> -->
+						</div>
+					</a>
+					</div>
+				</div>
+				<% }) %>
+				
+				
+			</div>
+		
+		</div>
+	</section>
+    <!-- course section end --> 
+    <section class="banner-section spad footer-section">
+		<div class="container">
+			<div class="section-title mb-0 pb-2">
+				<h2>Upload your project</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+			</div>
+			<div class="text-center pt-5">
+				<a href="#" class="site-btn">Upload Now!</a>
+			</div>
+		</div>
+	</section>
+
+<%- include("partials/footer") %> 

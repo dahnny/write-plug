@@ -1,0 +1,80 @@
+
+	
+<%- include('partials/header') %> 
+	<link rel="stylesheet" href="css/projects.css">
+	<link rel="stylesheet" href="css/responsive.css">
+  <!-- Hero section -->
+  <div id="overlay"></div>
+  <div class="image-section"></div>
+  
+  <section class="title-section">
+	<%- include('partials/navbar') %>
+	<%- include('partials/search') %> 
+  </section>
+<div id="wrap" class="grid_1200">
+	<section class="container main-content page-full-width">
+		<div class="row">
+			<div class="col-md-12">
+				<% if (projects.length > 0) { %>
+					<% projects.forEach(project => { %>
+						<article class="post clearfix">
+							<div class="post-inner">
+								<h2 class="post-title"><a href="single_post.html"><%= project.title %> </a></h2>
+								<div class="post-meta">
+									<span class="meta-author"><i class="icon-user"></i><a href="#"><%= project.username %> </a></span>
+									<span class="meta-date"><i class="icon-time"></i><%= project.dateCreated %> </span>
+									<span class="meta-categories"><i class="icon-suitcase"></i><a href="#"><%= project.category %> </a></span>
+								</div>
+								<div class="post-content">
+									<p><%= project.preview.substring(0,500) + "..." %> </p>
+									<a href="/preview?p=<%= project._id %>" class="post-read-more site-btn color small">View More</a>
+								</div><!-- End post-content -->
+							</div><!-- End post-inner -->
+						</article><!-- End article.post -->
+						<% }) %>
+				<% } else { %>
+					<article class="post clearfix"><h2>No Projects Found</h2></article>
+					
+						 
+				<% } %>
+				
+				
+				<!-- <div class="pagination">
+				    <a href="#" class="prev-button"><i class="icon-angle-left"></i></a>
+				    <span class="current">1</span>
+				    <a href="#">2</a>
+				    <a href="#">3</a>
+				    <a href="#">4</a>
+				    <a href="#" class="next-button"><i class="icon-angle-right"></i></a>
+				</div>End pagination -->
+			</div><!-- End main -->
+		</div><!-- End row -->
+	</section><!-- End container -->
+	
+</div><!-- End wrap -->
+<%- include('partials/footer') %> 
+
+<div class="go-up"><i class="icon-chevron-up"></i></div>
+
+<!-- js -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/jquery.easing.1.3.min.js"></script>
+<script src="js/html5.js"></script>
+<script src="js/twitter/jquery.tweet.js"></script>
+<script src="js/jflickrfeed.min.js"></script>
+<script src="js/jquery.inview.min.js"></script>
+<script src="js/jquery.tipsy.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script src="js/jquery.scrollTo.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script src="js/tags.js"></script>
+<script src="js/jquery.bxslider.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- End js -->
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const mongoose = require('mongoose');
+
+const flash = require('express-flash');
+require('dotenv').config();
+
+const app = express();
+
+mongoose.connect('mongodb://localhost:27017/writeplug', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//controllers
+const { register, login } = require('./controllers/userController');
+const { addProject } = require('./controllers/uploadController');
+const { getController } = require('./controllers/projectController');
+const { homeGetController } = require('./controllers/homeController');
+const { previewGetController } = require('./controllers/previewController');
+const { verifyAccount } = require('./controllers/paymentDetails');
+
+//helpers
+const upload = require('./helpers/storage');
+
+//middleware
+const authenticate = require('./middlewares/authenticator');
+
+const { Category } = require('./schemas/categorySchema');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
+app.use(session({
+    secret: 'aklnodingaoinurjnanunva91n29',
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+mongoose.set('useCreateIndex', true);
+
+
+
+app.get('/', homeGetController);
+
+app.get('/all_category', async (req, res) => {
+    let categories = await Category.find({});
+    res.render('category', { categories: categories });
+});
+
+app.get('/projects', getController);
+
+app.route('/upload')
+    .get(authenticate, async (req, res) => {
+        let categories = await Category.find({});
+        res.render('upload', { user: req.user, categories: categories });
+    })
+    .post(upload.single('uploadedDocument'), addProject);
+
+app.get('/preview', previewGetController);
+
+app.get('/payment-details', authenticate, verifyAccount);
+
+app.route('/login')
+    .get((req, res) => {
+        res.render('login');
+    })
+    .post(login);
+
+app.route('/register')
+    .get((req, res) => {
+        res.render('register');
+    })
+    .post(register);
+
+
+app.listen(3000, function () {
+    console.log('Server started at port 3000');
+})

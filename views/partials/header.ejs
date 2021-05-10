@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Write Plug</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Writeplug">
+	<meta name="keywords" content="writing, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link href="img/favicon_writeplug.png" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/css/owl.carousel.css"/>
+	<link rel="stylesheet" href="/css/style.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+    src="https://kit.fontawesome.com/e8473f0f94.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+	<% if(messages.error){ %>
+		<div class="alert alert-danger"><%= messages.error %></div>
+	
+		<% } %> <% if(messages.info){ %>
+		<div class="alert alert-info"><%= messages.info %></div>
+	
+		<% }%> <% if(messages.success){ %>
+		<div class="alert alert-success"><%= messages.success %></div>
+		<% }%>
+	

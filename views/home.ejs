@@ -1,0 +1,64 @@
+
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/css/projects.css">
+	<!-- <div id="preloder">
+		<div class="loader"></div>
+	</div> -->
+	 
+    <!-- Hero section -->
+    <div id="overlay"></div>
+	<div class="image-section"></div>
+	
+	<section class="title-section">
+		<%- include('partials/navbar') %>
+		<%- include('partials/search') %> 
+	</section>
+	<!-- Hero section end -->
+
+
+	<!-- categories section -->
+	<section class="categories-section spad">
+		<div class="container">
+			<div class="section-title">
+				<h2>Our Project Categories</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+			</div>
+			<div class="row">
+				<!-- categorie -->
+				<% categories.forEach(category => { %>
+				
+				<div class="col-lg-4 col-md-6">
+					<div class="categorie-item">
+						<div class="ci-thumb set-bg" data-setbg="img/categories/1.jpg"></div>
+						<a href="/projects?category_name=<%= category.title %>">
+							<div class="ci-text">
+								<h5><%= category.title %> </h5>
+								<p><%= category.description %> </p>
+								<!-- <span>120 Courses</span> -->
+							</div>
+						</a>					
+					</div>
+				</div>
+				<% }) %>				
+			</div>
+			<a href="/all_category" class="see-more-text">See more>></a>
+		</div>
+	</section>
+	<!-- categories section end -->
+
+
+
+	<!-- banner section -->
+	<section class="banner-section spad footer-section">
+		<div class="container">
+			<div class="section-title mb-0 pb-2">
+				<h2>Upload your project</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+			</div>
+			<div class="text-center pt-5">
+				<a href="/upload" class="site-btn">Upload Now!</a>
+			</div>
+		</div>
+	</section>
+	<!-- banner section end -->
+<%- include('partials/footer') %> 

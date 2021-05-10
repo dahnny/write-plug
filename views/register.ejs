@@ -1,0 +1,97 @@
+<%- include("partials/header") %>
+<link rel="stylesheet" href="css/login.css" />
+<link
+  rel="stylesheet"
+  href="fonts/material-icon/css/material-design-iconic-font.min.css"
+/>
+<body class="login-body">
+  <div class="main">
+    <section class="signup">
+      <div class="container">
+        <div class="signup-content">
+          <form
+            onsubmit="return validateForm()"
+            method="POST"
+            id="signup-form"
+            name="signup-form"
+            class="signup-form"
+          >
+            <h2 class="form-title">Create account</h2>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-input"
+                name="username"
+                id="name"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                class="form-input"
+                name="email"
+                id="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-input"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <span
+                toggle="#password"
+                class="zmdi zmdi-eye field-icon toggle-password"
+              ></span>
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-input"
+                name="re_password"
+                id="re_password"
+                placeholder="Repeat your password"
+                required
+              />
+              <p id="error-text" class="error-message-paragraph">This is a default text</p>
+            </div>
+            
+            <div class="form-group">
+              <input
+                type="submit"
+                name="submit"
+                id="submit"
+                class="form-submit"
+                value="Sign up"
+              />
+            </div>
+          </form>
+          <p class="loginhere">
+            Have already an account ?
+            <a href="/login" class="loginhere-link">Login here</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    function validateForm() {
+      var firstPassword = document.forms["signup-form"]["password"].value;
+      var confirmPassword = document.forms["signup-form"]["re_password"].value;
+      if (firstPassword != confirmPassword) {
+        var errorText = document.getElementById('error-text');
+        errorText.style.display = "block";
+        errorText.innerHTML = "Passwords do not match"
+        return false;
+      }
+    }
+  </script>
+  <script src="js/main.js"></script>
+</body>

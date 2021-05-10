@@ -1,0 +1,52 @@
+<%- include('partials/header') %> 
+<link rel="stylesheet" href="/css/projects.css"><%- include('partials/navbar') %>
+<div class="container">
+  <div id="account-form" class="card card-body card-top hide-form">
+    <h1>Enter your details</h1>
+    <form id="info-form" method="get" action="">
+      <div class="form-group">
+        <label class="label-size" for="">Bank Code</label>
+        <input
+          name="bankCode"
+          type="text"
+          class="form-control"
+          placeholder="Bank Code"
+          required
+          value="<%= (typeof user != 'undefined' && typeof user.accountDetails != 'undefined') ? user.accountDetails.bankCode : undefined %>"
+        />
+        <a
+          href="https://res.cloudinary.com/dogbuti/image/upload/v1609711155/cbn-bank-codes_vyekyj.pdf"
+          style="text-decoration: underline"
+          >List of Bank Codes</a
+        >
+      </div>
+
+      <div class="form-group price-input hide-class">
+        <label class="label-size" for="">Account Number</label>
+        <input
+          type="number"
+          name="account"
+          class="form-control"
+          placeholder="Account Number"
+          required
+          value="<%= (typeof user != 'undefined' && typeof user.accountDetails != 'undefined') ? user.accountDetails.account_number : undefined %>"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+    <small style="color: red">
+        *Please ensure you confirm the account details being sent as we would not be
+        responsible for any funds lost due to misinformation
+      </small>
+  </div>
+</div>
+
+<script>
+  function showVerify() {
+    const form = document.getElementById("account-form");
+    form.classList.toggle("hide-form");
+  }
+</script>
+
+<%- include('partials/footer') %> 

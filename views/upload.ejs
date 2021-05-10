@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="/css/upload.css" />
+<link rel="stylesheet" href="css/projects.css" />
+<%- include('partials/header') %> <%- include('partials/navbar') %>
+
+<div class="container">
+    <div class="centre pt-20">
+        <h1>Welcome <%= user.username %> </h1>
+    </div>
+    
+  <div class="main-container">
+    <div
+      class="pd-ltr-20 customscroll customscroll-10-p"
+    >
+      <div class="row clearfix progress-box centre">
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+          <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
+            <div class="project-info clearfix">
+              <div class="project-info-centre">
+                <span class="no text-blue weight-700 font-40">40</span>
+                <p class="weight-400 font-20">Uploaded Project(s)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+          <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
+            <div class="project-info clearfix">
+              <div class="project-info-centre">
+                <span class="no text-light-green weight-700 font-40">50</span>
+                <p class="weight-400 font-20">Projects Sold</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+          <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
+            <div class="project-info clearfix">
+              <div class="project-info-centre">
+                <span class="no text-light-orange weight-700 font-40">40</span>
+                <p class="weight-400 font-20">Declined Project(s)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="upload-portion">
+      
+      <form onsubmit=" submitUpload();" method="POST" enctype="multipart/form-data" action="/upload">
+        <div class="form-group">
+          <label for="project-topic">Project Title</label>
+          <input type="text" class="form-control" id="project-topic" name="projectTopic" placeholder="Project Topic" required>
+        </div>
+        <div class="form-group">
+          <label for="project-category">Project Category</label>
+          <select class="form-control" id="project-category" name="projectCategory" required>
+              <% categories.forEach(category => { %>
+                <option><%= category.title %> </option>
+              <% }) %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Chapter One(Copy Chapter One from a text editor and place it here)</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="preview" rows="7" required></textarea>
+        </div>
+      </div>
+      <p id="error-text" class="error-message-paragraph">This is a default text</p>
+      <input
+        id="defaultBtn"
+        type="file"
+        name="uploadedDocument"
+        accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        
+      />
+      
+      <button
+      type="submit"
+      id="uploadBtn"
+      class="upload-button btn btn-primary"
+    >
+      Upload Document
+    </button>
+    
+      </form>
+  </div>
+    <script>
+        function submitUpload(){
+            const file = document.getElementById("defaultBtn");
+            if( file.files.length == 0 || (file.files[0].size / 1048576) > 1 ){
+                event.preventDefault();
+                console.log("no files selected");
+                var errorText = document.getElementById('error-text');
+                errorText.style.display = "block";
+                errorText.innerHTML = "*Please upload a file less than 1mb"
+                return false;
+            }
+    }
+    </script>
+</div>
+
+
+<%- include('partials/footer') %>
