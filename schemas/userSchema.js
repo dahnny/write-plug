@@ -7,7 +7,10 @@ const userSchema = new mongoose.Schema({
     emailAddress: {type:String, unique:true},
     password:String,   
     accountDetails: {},
-    subAccountDetails: {}
+    subAccountDetails: {},
+    downloadToken: String,
+    downloadExpiry:String,
+    noOfProjectsSold:Number
 });
 
 userSchema.plugin(passportLocalMongoose);

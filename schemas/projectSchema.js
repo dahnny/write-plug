@@ -6,7 +6,8 @@ const projectSchema = new mongoose.Schema({
     file:String,
     dateCreated: {type: Date, default: Date.now},
     username: String,
-    category: String
+    category: String,
+    noOfTimesSold: Number,
 });
 
 const Project = new mongoose.model('Project', projectSchema);

@@ -1,13 +1,9 @@
-const Promise = require("bluebird");
-var request = Promise.promisify(require("request"), { multiArgs: true });
-Promise.promisifyAll(request, { multiArgs: true });
-var postRequest = Promise.promisify(require("request").post, { multiArgs: true });
-Promise.promisifyAll(postRequest, { multiArgs: true });
+const {request, postRequest} = require('../helpers/bluebird');
 
 const User = require('../schemas/userSchema');
 
 const paymentDetails = {
-    verifyAccount: async (req, res, next) => {
+    verifyAccount: async (req, res) => {
         const bankCode = req.query.bankCode;
         const accountNumber = req.query.account;
         const paystackSecret = process.env.PAYSTACK_SECRET;
@@ -22,7 +18,7 @@ const paymentDetails = {
             }
             try {
                 const response = (await request(options))[0];
-                const responseBody = JSON.parse(response.body);
+                const responseBody = (JSON.parse(response.body)).data;
                 if (response.statusCode == 200) {
                     let user = await User.findById(req.user._id);
                     let options = {
@@ -39,10 +35,14 @@ const paymentDetails = {
                         }
                     }
                     let response = (await postRequest(options))[0];
-                    let accountBody = JSON.parse(response.body);
+                    let accountBody = (JSON.parse(response.body)).data;
 
-                    user.subAccountDetails = accountBody
-                    // res.render('payment', { user: req.user });
+                    
+                    user.subAccountDetails = accountBody;
+                    user.accountDetails = responseBody;
+                    await user.save();
+                    req.flash('success', 'Account has been verified and created. You can now receive payments');
+                    res.redirect('/payment-details');
                 }
             } catch (error) {
                 console.error(error);
@@ -50,7 +50,7 @@ const paymentDetails = {
                 res.redirect('back');
             }
         } else {
-            res.render('payment', { user: req.user });
+            res.render('payment', { user: req.user , isVerified: (req.user.subAccountDetails != {} && typeof req.user.subAccountDetails != 'undefined') ? true : false });
         }
     }
 }

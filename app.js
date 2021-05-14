@@ -13,12 +13,13 @@ mongoose.connect('mongodb://localhost:27017/writeplug', { useNewUrlParser: true,
 
 //controllers
 const { register, login } = require('./controllers/userController');
-const { addProject } = require('./controllers/uploadController');
+const { addProject, uploadGetRequest } = require('./controllers/uploadController');
 const { getController } = require('./controllers/projectController');
 const { homeGetController } = require('./controllers/homeController');
 const { previewGetController } = require('./controllers/previewController');
 const { verifyAccount } = require('./controllers/paymentDetails');
-
+const { verify } = require('./controllers/verifyTransaction');
+const {downloadGet} = require('./controllers/downloadController');
 //helpers
 const upload = require('./helpers/storage');
 
@@ -56,15 +57,16 @@ app.get('/all_category', async (req, res) => {
 app.get('/projects', getController);
 
 app.route('/upload')
-    .get(authenticate, async (req, res) => {
-        let categories = await Category.find({});
-        res.render('upload', { user: req.user, categories: categories });
-    })
+    .get(authenticate, uploadGetRequest)
     .post(upload.single('uploadedDocument'), addProject);
 
 app.get('/preview', previewGetController);
 
 app.get('/payment-details', authenticate, verifyAccount);
+
+app.get('/verify_transaction', verify);
+
+app.get('/download/:token', downloadGet);
 
 app.route('/login')
     .get((req, res) => {

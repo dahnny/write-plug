@@ -30,7 +30,7 @@ const projectController = {
             req.flash('error', 'Error Occured');
             res.redirect('back')
         }
-        res.render('projects', { projects: projects });
+        res.render('projects', { user: req.user, projects: projects });
     }
 }
 

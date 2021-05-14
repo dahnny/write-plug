@@ -3,14 +3,29 @@ const cloudinary = require('../helpers/cloudinaryConfig')
 
 //Schemas
 const Project = require('../schemas/projectSchema');
+const { Category } = require('../schemas/categorySchema');
 
-function displayErrorMessage(){
+function displayErrorMessage() {
     req.flash('error', 'Error Occurred');
     res.redirect('back');
-    console.log('error');
+   
 }
 
 const uploadController = {
+    uploadGetRequest:
+        async (req, res) => {
+            try {
+                let categories = await Category.find({});
+                let projects = await Project.find({ username: req.user.username });
+                res.render('upload', { user: req.user, categories: categories, noOfUploadedProjects: projects.length });
+
+            } catch (error) {
+                req.flash('error', error.message);
+                 console.log(error);
+                res.redirect('back');
+            }
+
+        },
 
     addProject: async (req, res) => {
         const topic = req.body.projectTopic;
@@ -26,6 +41,7 @@ const uploadController = {
             });
 
             if (result) {
+
                 let newProject = new Project({
                     title: topic,
                     preview: preview,
@@ -37,12 +53,14 @@ const uploadController = {
                 let project;
 
                 project = await newProject.save();
+
                 req.flash('success', 'Upload Successful')
                 res.redirect('back')
             }
 
 
         } catch (error) {
+            console.log(error);
             displayErrorMessage();
         }
     }

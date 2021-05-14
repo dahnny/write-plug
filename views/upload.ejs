@@ -16,7 +16,8 @@
           <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
             <div class="project-info clearfix">
               <div class="project-info-centre">
-                <span class="no text-blue weight-700 font-40">40</span>
+                <span class="no text-blue weight-700 font-40"> <% if (typeof noOfUploadedProjects != 'undefined') { %> <%=
+                  noOfUploadedProjects %> <% } else { %> 0 <% } %></span>
                 <p class="weight-400 font-20">Uploaded Project(s)</p>
               </div>
             </div>
@@ -26,7 +27,8 @@
           <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
             <div class="project-info clearfix">
               <div class="project-info-centre">
-                <span class="no text-light-green weight-700 font-40">50</span>
+                <span class="no text-light-green weight-700 font-40"><% if (typeof user.noOfProjectsSold != 'undefined') { %> <%=
+                  user.noOfProjectsSold %> <% } else { %> 0 <% } %></span>
                 <p class="weight-400 font-20">Projects Sold</p>
               </div>
             </div>

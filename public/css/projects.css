@@ -636,7 +636,11 @@ div[class*="slider_shadow"]:before, div[class^="header_shadow"] {
 .card-center{
 	text-align: center;
 }
-
+.hide-form{
+    display: none;
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+}
 .download-btn{
 	margin-top: 50px;
 }
