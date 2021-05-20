@@ -19,7 +19,7 @@ const { homeGetController } = require('./controllers/homeController');
 const { previewGetController } = require('./controllers/previewController');
 const { verifyAccount } = require('./controllers/paymentDetails');
 const { verify } = require('./controllers/verifyTransaction');
-const {downloadGet} = require('./controllers/downloadController');
+const { downloadGet } = require('./controllers/downloadController');
 //helpers
 const upload = require('./helpers/storage');
 
@@ -81,6 +81,7 @@ app.route('/register')
     .post(register);
 
 
-app.listen(3000, function () {
-    console.log('Server started at port 3000');
-})
+const port = process.env.PORT || 3000
+app.listen(port, function () {
+    console.log(`Server started on ${port}`);
+});
