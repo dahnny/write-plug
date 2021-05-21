@@ -1830,11 +1830,12 @@ div[class*="slider_shadow"]:before, div[class^="header_shadow"] {
 	margin-bottom: 0;
 }
 .widget h3.widget_title {
+	color: #fff;
 	margin: -20px 0 20px;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 20px 0 10px;
-	border-bottom: 2px solid #dedede;
+	border-bottom: 2px solid #fff;
 	position: relative;
 }
 .widget a {
