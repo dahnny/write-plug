@@ -14,10 +14,10 @@ const projectController = {
                 projects = await Project.find({ category: categoryName });
             } else {
                 if (project && !category) {
-                    projects = await Project.find({ title: project });
+                    projects = await Project.find({ title: {$regex: project, $options: '$i'}});
 
                 } else if (project && category) {
-                    projects = await Project.find({ title: project, category: category });
+                    projects = await Project.find({ title: {$regex: project, $options: '$i'}, category: {$regex: category, $options: '$i'} });
 
                 } else {
                     projects = await Project.find();

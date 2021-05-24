@@ -9,8 +9,8 @@ require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb+srv://admin-daniel:Test123@cluster0.if4il.mongodb.net/writeplug?retryWrites=true&w=majority&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true })
-// mongoose.connect('mongodb://localhost:27017/writeplug', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://admin-daniel:Test123@cluster0.if4il.mongodb.net/writeplug?retryWrites=true&w=majority&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/writeplug', { useNewUrlParser: true, useUnifiedTopology: true });
 
 //controllers
 const { register, login } = require('./controllers/userController');

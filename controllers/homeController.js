@@ -8,11 +8,11 @@ const homeController = {
         const category = req.query.category;
 
         if (project && !category) {
-            projects = await Project.find({ title: project });
+            projects = await Project.find({ title: {$regex: project, $options: '$i'}});
             res.render('projects', { projects: projects });
 
         } else if (project && category) {
-            projects = await Project.find({ title: project, category: category });
+            projects = await Project.find({ title: {$regex: project, $options: '$i'}, category: {$regex: category, $options: '$i'} });
             res.render('projects', { projects: projects });
 
         } else {
