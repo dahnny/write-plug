@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     subAccountDetails: {},
     downloadToken: String,
     downloadExpiry:String,
-    noOfProjectsSold:Number
+    noOfProjectsSold:Number,
+    isAdmin: Boolean
 });
 
 userSchema.plugin(passportLocalMongoose);

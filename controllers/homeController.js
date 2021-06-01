@@ -1,5 +1,6 @@
 const Project = require('../schemas/projectSchema');
 const {Category} = require('../schemas/categorySchema');
+const User = require('../schemas/userSchema');
 
 
 const homeController = {
@@ -17,8 +18,11 @@ const homeController = {
 
         } else {
             try {
-                let categories = await Category.find({}); 
-                if (req.isAuthenticated()) {                
+                let categories = await Category.find({}).sort({title: 1}); 
+                if (req.isAuthenticated()) {    
+                    // let user = await User.findById(req.user._id);
+                    // user.isAdmin = true;
+                    // user.save();
                     res.render('home', { user: req.user, categories : categories.slice(0,6) });
                 } else {
                     res.render('home', {categories: categories.slice(0,6)});

@@ -26,7 +26,9 @@
 							<li><a href="/payment-details">Payments</a></li>
 							<li><a href="/projects">Projects</a></li>
 							<li><a href="">About us</a></li>
-							
+							<% if (typeof(user) != 'undefined' && user.isAdmin == true) { %>
+								<li><a href="/admin/categories/?user=<%= user._id %>">Admin</a></li>
+							<% } %>
 						</ul>
 					</nav>
 				</div>

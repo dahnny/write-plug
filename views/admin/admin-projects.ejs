@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/admin.css" />
+<!-- <link rel="stylesheet" href="/css/admin-projects.css"> -->
+<link rel="stylesheet" href="/css/projects.css" />
+<%-include('../partials/sidebar')%>
+
+<div class="main-container">
+
+  <div class="customscroll customscroll-10-p xs-pd-20-10 pd-ltr-20 mb-lg-3">
+    <div class="pd-20 bg-white border-radius-4 box-shadow">
+      <h4 class="mb-20">Projects</h4>
+      <% projects.forEach(project => { %>
+        <div id="<%= project._id %>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= project.title %> </h5>
+                <small class="text-muted"><%= project.noOfTimesSold %> </small>
+            </div>
+            <div class="float-right">
+              <div><a class= "btn btn-danger"href="delete/?delete=<%=(project._id) %>">Delete</a></div>
+              
+            </div>  
+            <p class="mb-1">Category: <%= project.category %> </p>
+            <small class="text-muted">Created by <%= project.username %> </small>
+          </div> 
+      <% }) %>
+
+    </div>
+    
+  </div>
+  <%- include('../partials/footer') %>
+</div>

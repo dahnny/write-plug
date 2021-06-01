@@ -1,4 +1,4 @@
-const {request, postRequest} = require('../helpers/bluebird');
+const { request, postRequest } = require('../helpers/bluebird');
 
 const User = require('../schemas/userSchema');
 
@@ -37,7 +37,7 @@ const paymentDetails = {
                     let response = (await postRequest(options))[0];
                     let accountBody = (JSON.parse(response.body)).data;
 
-                    
+
                     user.subAccountDetails = accountBody;
                     user.accountDetails = responseBody;
                     await user.save();
@@ -50,7 +50,29 @@ const paymentDetails = {
                 res.redirect('back');
             }
         } else {
-            res.render('payment', { user: req.user , isVerified: (req.user.subAccountDetails != {} && typeof req.user.subAccountDetails != 'undefined') ? true : false });
+
+            let options = {
+                url: `https://api.paystack.co/bank/`,
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${paystackSecret}`
+                }
+            }
+
+            try {
+                let response = (await request(options))[0];
+                let responseBody = (JSON.parse(response.body)).data;
+                // console.log(responseBody);
+                res.render('payment', {
+                    user: req.user,
+                    banks: responseBody,
+                    isVerified: (req.user.subAccountDetails != {} && typeof req.user.subAccountDetails != 'undefined') ? true : false
+                });
+            } catch (error) {
+                console.error(error);
+                req.flash('error', error.message);
+                res.redirect('back');
+            }
         }
     }
 }

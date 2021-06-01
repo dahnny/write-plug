@@ -32,6 +32,10 @@ const uploadController = {
         const category = req.body.projectCategory;
         const preview = req.body.preview;
 
+        if(req.user.subAccountDetails == {} || req.user.subAccountDetails == undefined){
+            req.flash('info', 'Please verify your bank account before you can upload a project');
+            res.redirect('/payment-details');
+        }
         if (!req.file) {
             displayErrorMessage();
         }

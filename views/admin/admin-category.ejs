@@ -1,0 +1,42 @@
+
+
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/admin.css" /> 
+<link rel="stylesheet" href="/css/projects.css" />
+<%-include('../partials/sidebar')%>
+<div class="main-container">
+  <div
+    class="customscroll customscroll-10-p xs-pd-20-10 pd-ltr-20 mb-lg-3"
+  >
+    <div class="pd-20 bg-white border-radius-4 box-shadow">
+      <h4 class="mb-20">Categories</h4>
+      <ul class="list-group">
+        <% categories.forEach(category => { %>
+          <li class="list-group-item"><%= category.title %> <a href="/admin/categories/?deleteTitle=<%= category.title %>"><span class="fa fa-times color-red float-right"></span></a></li>
+        <% }) %>
+      </ul>
+    </div>    
+  </div>
+  <div class="card box-shadow pd-20-10 pd-ltr-20 ml-3 mr-3">
+    <h4 class="mb-20">Add Category</h4>
+    <form method="GET" action="">
+      <div class="form-group row">
+        <label class="col-sm-12 col-md-2 col-form-label">Title</label>
+        <div class="col-sm-12 col-md-10">
+          <input class="form-control" type="text" placeholder="Enter a category title" name="title" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-12 col-md-2 col-form-label">Description(optional)</label>
+        <div class="col-sm-12 col-md-10">
+          <input class="form-control" placeholder="Describe the category" type="text" name="description">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg mb-3">Add Category</button>
+    </form>
+  </div> 
+  <%- include('../partials/footer') %>
+</div>
+
+
+

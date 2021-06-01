@@ -49,6 +49,9 @@
 .boxed_body {
 	background: url(images/patterns/bg13.png) repeat;
 }
+.color-red{
+	color: red;
+}
 .boxed_body_2 {
 	background: url(http://placehold.it/2000x1100/222/FFF) no-repeat center center fixed;
 	background-size: 100% 100%;

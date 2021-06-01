@@ -21,11 +21,15 @@ const { previewGetController } = require('./controllers/previewController');
 const { verifyAccount } = require('./controllers/paymentDetails');
 const { verify } = require('./controllers/verifyTransaction');
 const { downloadGet } = require('./controllers/downloadController');
+const { categoryGetController } = require('./controllers/categoryController');
+const { adminProjectGetController, adminDeleteProject} = require('./controllers/adminProjectController');
+
 //helpers
 const upload = require('./helpers/storage');
 
 //middleware
 const authenticate = require('./middlewares/authenticator');
+const adminAuthenticate = require('./middlewares/admin-authenticator');
 
 const { Category } = require('./schemas/categorySchema');
 
@@ -68,6 +72,13 @@ app.get('/payment-details', authenticate, verifyAccount);
 app.get('/verify_transaction', verify);
 
 app.get('/download/:token', downloadGet);
+
+app.get('/admin/categories', adminAuthenticate, categoryGetController);
+
+app.get('/admin/projects', adminAuthenticate, adminProjectGetController);
+
+app.get('/admin/projects/delete', adminDeleteProject);
+
 
 app.route('/login')
     .get((req, res) => {
