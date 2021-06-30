@@ -1,7 +1,7 @@
 const User = require('../schemas/userSchema')
 
 async function adminAuthenticate(req, res, next){
-    const userId = req.query.user;
+    const userId = req.params.user;
 
     try {
         if(userId){

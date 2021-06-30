@@ -26,7 +26,7 @@
 									<span class="meta-categories"><i class="icon-suitcase"></i><a href="#"><%= project.category %> </a></span>
 								</div>
 								<div class="post-content">
-									<p><%= project.preview.substring(0,500) + "..." %> </p>
+									<p><%- project.preview.substring(0,200) + "..." %> </p>
 									<a href="/preview?p=<%= project._id %>" class="post-read-more site-btn color small">View More</a>
 								</div><!-- End post-content -->
 							</div><!-- End post-inner -->

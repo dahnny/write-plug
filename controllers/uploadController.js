@@ -30,7 +30,14 @@ const uploadController = {
     addProject: async (req, res) => {
         const topic = req.body.projectTopic;
         const category = req.body.projectCategory;
-        const preview = req.body.preview;
+        let preview = req.body.preview;
+
+        // preview = preview.replace(/&/g, '&amp;');
+        // preview = preview.replace(/</g, '&lt;');
+        // preview = preview.replace(/>/g, '&gt;');
+        // preview = preview.replace(/"/g, '&quot;');
+        // preview = preview.replace(/'/g, '&apos');
+        // console.log(preview);
 
         if(req.user.subAccountDetails == {} || req.user.subAccountDetails == undefined){
             req.flash('info', 'Please verify your bank account before you can upload a project');

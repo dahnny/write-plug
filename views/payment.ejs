@@ -7,7 +7,9 @@
       <div class="form-group">
         <label class="label-size" for="">Bank Name</label>
         <select name="bankCode" id="" class="form-control">
-           <option value="">--</option>
+          <option value="none" selected disabled hidden>
+            Select an Option
+        </option> 
           <% banks.forEach(bank => { %>           
            <option value = "<%= bank.code %>"> <%= bank.name %></option>
           <% }) %>

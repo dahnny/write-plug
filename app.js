@@ -73,11 +73,11 @@ app.get('/verify_transaction', verify);
 
 app.get('/download/:token', downloadGet);
 
-app.get('/admin/categories', adminAuthenticate, categoryGetController);
+app.get('/admin-categories/:user', adminAuthenticate, categoryGetController);
 
-app.get('/admin/projects', adminAuthenticate, adminProjectGetController);
+app.get('/admin-projects/delete', adminDeleteProject);
 
-app.get('/admin/projects/delete', adminDeleteProject);
+app.get('/admin-projects/:user', adminAuthenticate, adminProjectGetController);
 
 
 app.route('/login')
@@ -93,7 +93,7 @@ app.route('/register')
     .post(register);
 
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 app.listen(port, function () {
     console.log(`Server started on ${port}`);
 });

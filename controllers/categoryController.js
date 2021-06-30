@@ -11,12 +11,13 @@ module.exports = {
                     title: title,
                     description: description
                 });
+                console.log(newCategory);
                 await newCategory.save();
-                res.redirect('/admin/categories');
+                res.redirect(`/admin-categories/${req.user._id}`);
 
             } else if (deleteTitle) {
                 await Category.findOneAndDelete({title: deleteTitle});
-                res.redirect('/admin/categories');
+                res.redirect(`/admin-categories/${req.user._id}`);
             }
             else {
                 let categories = await Category.find().sort({title : 1});
