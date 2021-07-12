@@ -16,8 +16,16 @@
                 <small class="text-muted"><%= project.noOfTimesSold %> </small>
             </div>
             <div class="float-right">
-              <div><a class= "btn btn-danger"href="delete?delete=<%= project._id %>">Delete</a></div>
+              <div class="row">
+                <% if (project.isApproved == false) { %>
+                  <div><a class= "btn btn-primary" href="?approve=<%= project._id %>">Approve</a></div>
+                <% } else { %>
+                  <div><a class= "btn btn-danger" href="?approve=<%= project._id %>">DisApprove</a></div>
+                <% } %>           
+                 
               
+              <div><a class= "btn btn-danger"href="delete?delete=<%= project._id %>">Delete</a></div>
+            </div> 
             </div>  
             <p class="mb-1">Category: <%= project.category %> </p>
             <small class="text-muted">Created by <%= project.username %> </small>

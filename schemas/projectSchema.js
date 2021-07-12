@@ -7,6 +7,7 @@ const projectSchema = new mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     username: String,
     category: String,
+    isApproved: {type: Boolean, default: false},
     noOfTimesSold: Number,
 });
 

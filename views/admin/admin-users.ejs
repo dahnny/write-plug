@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/admin.css" />
+<!-- <link rel="stylesheet" href="/css/admin-projects.css"> -->
+<link rel="stylesheet" href="/css/projects.css" />
+<%-include('../partials/sidebar')%>
+
+<div class="main-container">
+
+  <div class="customscroll customscroll-10-p xs-pd-20-10 pd-ltr-20 mb-lg-3">
+    <div class="pd-20 bg-white border-radius-4 box-shadow">
+      <h4 class="mb-20">Users</h4>
+      <% users.forEach(user => { %>
+        <div id="<%= user._id %>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= user.username %> </h5>
+                <small class="text-muted"><%= user.emailAddress %> </small>
+            </div>
+            <div class="float-right">
+              <div class="row">
+             
+              <div><a class= "btn btn-danger"href="?delete=<%= user._id %>">Delete</a></div>
+            </div> 
+            </div>  
+            <p class="mb-1">No of Projects Sold: <%= user.noOfProjectsSold %> </p>
+          </div> 
+      <% }) %>
+
+    </div>
+    
+  </div>
+  <%- include('../partials/footer') %>
+</div>

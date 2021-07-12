@@ -23,6 +23,7 @@ const { verify } = require('./controllers/verifyTransaction');
 const { downloadGet } = require('./controllers/downloadController');
 const { categoryGetController } = require('./controllers/categoryController');
 const { adminProjectGetController, adminDeleteProject} = require('./controllers/adminProjectController');
+const {adminGetUser} = require('./controllers/adminUserController');
 
 //helpers
 const upload = require('./helpers/storage');
@@ -78,6 +79,8 @@ app.get('/admin-categories/:user', adminAuthenticate, categoryGetController);
 app.get('/admin-projects/delete', adminDeleteProject);
 
 app.get('/admin-projects/:user', adminAuthenticate, adminProjectGetController);
+
+app.get('/admin-users/:user', adminAuthenticate, adminGetUser)
 
 
 app.route('/login')

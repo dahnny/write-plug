@@ -1,4 +1,5 @@
 const Project = require('../schemas/projectSchema');
+const User = require('../schemas/userSchema');
 
 const projectController = {
     getController: async (req, res) => {
@@ -11,16 +12,23 @@ const projectController = {
 
             if (categoryName) {
 
-                projects = await Project.find({ category: categoryName });
+                projects = await Project.find({ category: categoryName, isApproved: true });
             } else {
                 if (project && !category) {
-                    projects = await Project.find({ title: {$regex: project, $options: '$i'}});
+                    projects = await Project.find({
+                        title: { $regex: project, $options: '$i' },
+                        isApproved: true
+                    });
 
                 } else if (project && category) {
-                    projects = await Project.find({ title: {$regex: project, $options: '$i'}, category: {$regex: category, $options: '$i'} });
+                    projects = await Project.find({
+                        title: { $regex: project, $options: '$i' },
+                        category: { $regex: category, $options: '$i' },
+                        isApproved: true
+                    });
 
                 } else {
-                    projects = await Project.find();
+                    projects = await Project.find({ isApproved: true });
                 }
 
             }
@@ -30,6 +38,14 @@ const projectController = {
             req.flash('error', 'Error Occured');
             res.redirect('back')
         }
+        projects.forEach(async project => {
+            let user = await User.find({username: project.username});
+            console.log(user);
+            if(user.length == 0){
+                console.log('dmkaf');
+                await Project.findByIdAndDelete(project._id);
+            }
+        });
         res.render('projects', { user: req.user, projects: projects });
     }
 }
