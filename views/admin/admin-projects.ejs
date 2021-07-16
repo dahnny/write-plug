@@ -28,7 +28,9 @@
             </div> 
             </div>  
             <p class="mb-1">Category: <%= project.category %> </p>
-            <small class="text-muted">Created by <%= project.username %> </small>
+            <small class="text-muted">Created by <%= project.username %> </small><br>
+            <a style="color: blue;" href="<%= project.file %>">Click to download project</a>
+            
           </div> 
       <% }) %>
 
