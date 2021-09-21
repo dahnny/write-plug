@@ -35,7 +35,7 @@ const projectController = {
 
         } catch (error) {
             console.log(error);
-            req.flash('error', 'Error Occured');
+            req.flash('error', 'Error Occurred');
             res.redirect('back')
         }
         projects.forEach(async project => {

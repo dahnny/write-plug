@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     downloadToken: String,
     downloadExpiry: String,
     noOfProjectsSold: Number,
-    isAdmin: { type: Boolean, default: true }
+    isAdmin: { type: Boolean, default: false }
 });
 
 userSchema.plugin(passportLocalMongoose);

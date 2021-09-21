@@ -1,64 +1,71 @@
-
 <%- include('partials/header') %>
 <link rel="stylesheet" href="/css/projects.css">
-	<!-- <div id="preloder">
+<!-- <div id="preloder">
 		<div class="loader"></div>
 	</div> -->
-	 
-    <!-- Hero section -->
-    <div id="overlay"></div>
-	<div class="image-section"></div>
-	
-	<section class="title-section">
-		<%- include('partials/navbar') %>
-		<%- include('partials/search') %> 
-	</section>
-	<!-- Hero section end -->
+
+<!-- Hero section -->
+<div id="overlay"></div>
+<div class="image-section"></div>
+
+<section class="title-section">
+	<%- include('partials/navbar') %>
+	<%- include('partials/search') %>
+</section>
+<!-- Hero section end -->
 
 
-	<!-- categories section -->
-	<section class="categories-section spad">
-		<div class="container">
-			<div class="section-title">
-				<h2>Our Project Categories</h2>
-				<p>We provide a variety of research topics in virtually all fields of academic endeavors to serve the need for literature review</p>
-			</div>
-			<div class="row">
-				<!-- categorie -->
-				<% categories.forEach(category => { %>
-				
-				<div class="col-lg-4 col-md-6">
-					<div class="categorie-item">
-						<div class="ci-thumb set-bg" data-setbg="images/book.png"></div>
-						<a href="/projects?category_name=<%= category.title %>">
-							<div class="ci-text">
-								<h5><%= category.title %> </h5>
-								<p><%= category.description %> </p>
-								<!-- <span>120 Courses</span> -->
-							</div>
-						</a>					
-					</div>
+<!-- categories section -->
+<section class="categories-section spad">
+	<div class="container">
+		<div class="section-title">
+			<h2>Our Project Categories</h2>
+			<p>We provide a variety of research topics in virtually all fields of academic endeavors to serve the need
+				for literature review</p>
+		</div>
+		<div class="row">
+			<!-- categorie -->
+			<% categories.forEach(category => { %>
+
+			<div class="col-lg-4 col-md-6">
+				<div class="categorie-item">
+					<div class="ci-thumb set-bg" data-setbg="images/book.png"></div>
+					<a href="/projects?category_name=<%= category.title %>">
+						<div class="ci-text">
+							<h5><%= category.title %> </h5>
+							<p><%= category.description %> </p>
+							<!-- <span>120 Courses</span> -->
+						</div>
+					</a>
 				</div>
-				<% }) %>				
 			</div>
-			<a href="/all_category" class="see-more-text">See more>></a>
+			<% }) %>
 		</div>
-	</section>
-	<!-- categories section end -->
+		<a href="/all_category" class="see-more-text">See more>></a>
+	</div>
+</section>
+<!-- categories section end -->
 
 
 
-	<!-- banner section -->
-	<section class="banner-section spad footer-section">
-		<div class="container">
-			<div class="section-title mb-0 pb-2">
-				<h2>Upload your project</h2>
-				<p>Upload your recent academic work. (Project, Thesis, Dissertation) and earn 60% per item each time your work is downloaded</p>
-			</div>
-			<div class="text-center pt-5">
-				<a href="/upload" class="site-btn">Upload Now!</a>
-			</div>
+<!-- banner section -->
+<section class="banner-section spad footer-section">
+	<div class="container">
+		<div class="section-title mb-0 pb-2">
+			<h2>Upload your project</h2>
+			<p>Upload your recent academic work. (Project, Thesis, Dissertation) and earn 60% per item each time your
+				work is downloaded</p>
 		</div>
-	</section>
-	<!-- banner section end -->
-<%- include('partials/footer') %> 
+		<div class="text-center pt-5">
+			<a href="/upload" class="site-btn">Upload Now!</a>
+		</div>
+		<% if (typeof(user) != 'undefined') { %>
+		<div class="text-center pt-3 text-uppercase">
+			<a href="/hire">Hire a Writer</a>
+		</div>
+		<% } %>
+
+	</div>
+</section>
+<!-- banner section end -->
+<%- include('partials/footer') %>

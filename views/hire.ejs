@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/login.css">
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="/css/projects.css">
+
+<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+<!-- <body class="login-body"> -->
+<%- include('partials/navbar') %>
+
+<body>
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" name="signup-form" class="signup-form">
+                        <h2 class="form-title">Hire A Writer</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="topic" id="topic" placeholder="Project Topic"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-input" name="budget" id="budget" placeholder="Budget(Naira)"
+                                required />
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<%- include('partials/footer') %>
