@@ -25,11 +25,8 @@
 							<li><a href="/">Home</a></li>
 							<li><a href="/payment-details">Payments</a></li>
 							<li><a href="/projects">Projects</a></li>
-							<% if (typeof(user) != 'undefined') { %>
 							<li><a href="/hire">Hire Writer</a></li>
-							<% } else { %>
-							<li><a href="">About Us</a></li>
-							<% } %>
+
 							<% if (typeof(user) != 'undefined' && user.isAdmin == true) { %>
 							<li><a href="/admin-categories/<%= user._id %>">Admin</a></li>
 							<% } %>

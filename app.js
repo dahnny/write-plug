@@ -107,7 +107,7 @@ app
   })
   .post(register);
 
-app.route("/hire").get(getWriter).post(postWriter);
+app.route("/hire").get(authenticate,getWriter).post(postWriter);
 
 app.get("/logout", (req, res) => {
   req.logout();
