@@ -5,29 +5,33 @@
 				<div class="col-lg-3 col-md-3">
 					<div class="site-logo">
 						<a href="/">
-						<img src="img/logo.png" alt="">
-					</a>
+							<img src="img/logo.png" alt="">
+						</a>
 					</div>
 					<div class="nav-switch">
 						<i class="fas fa-bars"></i>
 					</div>
-                </div> 
-                
+				</div>
+
 				<div class="col-lg-9 col-md-9">
 					<% if (typeof(user) != 'undefined') { %>
-						<a href="/upload" class="site-btn header-btn">Upload Project</a>
+					<a href="/upload" class="site-btn header-btn">Upload Project</a>
 					<% } else { %>
-						<a href="/login" class="site-btn header-btn">Login</a>	 
+					<a href="/login" class="site-btn header-btn">Login</a>
 					<% } %>
-					
+
 					<nav class="main-menu">
 						<ul>
 							<li><a href="/">Home</a></li>
 							<li><a href="/payment-details">Payments</a></li>
 							<li><a href="/projects">Projects</a></li>
-							<li><a href="">About us</a></li>
+							<% if (typeof(user) != 'undefined') { %>
+							<li><a href="/hire">Hire Writer</a></li>
+							<% } else { %>
+							<li><a href="">About Us</a></li>
+							<% } %>
 							<% if (typeof(user) != 'undefined' && user.isAdmin == true) { %>
-								<li><a href="/admin-categories/<%= user._id %>">Admin</a></li>
+							<li><a href="/admin-categories/<%= user._id %>">Admin</a></li>
 							<% } %>
 						</ul>
 					</nav>
