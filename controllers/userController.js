@@ -15,13 +15,13 @@ passport.deserializeUser(function (id, done) {
 
 const userController = {
   register: async (req, res) => {
-    const username = req.body.username;
-    const emailAddress = req.body.email;
-
+    const { username, email, phone, fullname } = req.body;
     let user;
     const newUser = new User({
-      username: username,
-      emailAddress: emailAddress,
+      fullname,
+      username,
+      emailAddress: email,
+      phone,
     });
     try {
       user = await User.register(newUser, req.body.password);
