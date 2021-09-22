@@ -16,7 +16,7 @@ const hireWriter = {
 
     try {
       await client.sendMail(email);
-      req.flash("info", "Successfully sent the email to writeplugng@gmail.com");
+      req.flash("info", "Your request has been received. Kindly check your email afterwards. Thanks");
       res.redirect("back");
     } catch (error) {
       console.log(error);
