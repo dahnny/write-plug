@@ -93,6 +93,19 @@ app.get("/admin-projects/:user", adminAuthenticate, adminProjectGetController);
 
 app.get("/admin-users/:user", adminAuthenticate, adminGetUser);
 
+app.get("/privacy-policy", (req, res) => {
+  res.render("privacy-policy");
+});
+app.get("/terms-and-conditions", (req, res) => {
+  res.render("terms");
+});
+app.get("/about-us", (req, res) => {
+  res.render("about-us");
+});
+app.get('/investors-and-partners', (req, res)=>{
+  res.render('investors');
+})
+
 app
   .route("/login")
   .get((req, res) => {
@@ -107,7 +120,7 @@ app
   })
   .post(register);
 
-app.route("/hire").get(authenticate,getWriter).post(postWriter);
+app.route("/hire").get(authenticate, getWriter).post(postWriter);
 
 app.get("/logout", (req, res) => {
   req.logout();

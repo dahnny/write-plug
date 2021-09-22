@@ -95,6 +95,15 @@
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
+.content{
+	color: black;
+	margin-top: 10px;
+}
+.content h2{
+	margin-top: 40px;
+	margin-bottom: 20px;
+	text-align: center;
+}
 .login-panel h2 {
 	font-size: 16px;
 	font-weight: bold;
