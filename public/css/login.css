@@ -152,6 +152,10 @@ display-flex, .display-flex, .display-flex-center {
     width: 660px;
     position: relative;
     margin: 0 auto; }
+
+  .font-increase{
+    margin: 30px;
+  }
   
   .display-flex {
     justify-content: space-between;

@@ -16,8 +16,8 @@ const hireWriter = {
 
     try {
       await client.sendMail(email);
-      req.flash("info", "Your request has been received. Kindly check your email afterwards. Thanks");
-      res.redirect("back");
+      // req.flash("info", "Your request has been received. Kindly check your email afterwards. Thanks");
+      res.render("success");
     } catch (error) {
       console.log(error);
       req.flash("error", "We experienced an error");

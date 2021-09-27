@@ -685,7 +685,11 @@ ol {
 ---------------------*/
 
 .footer-section {
-  border-top: 3px solid #d82a4e;
+  border-top: 5px solid #03a9f4;
+}
+
+.font-increase{
+  width: 50px;
 }
 
 .footer-warp {

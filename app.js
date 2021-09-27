@@ -102,9 +102,9 @@ app.get("/terms-and-conditions", (req, res) => {
 app.get("/about-us", (req, res) => {
   res.render("about-us");
 });
-app.get('/investors-and-partners', (req, res)=>{
-  res.render('investors');
-})
+app.get("/investors-and-partners", (req, res) => {
+  res.render("investors");
+});
 
 app
   .route("/login")
